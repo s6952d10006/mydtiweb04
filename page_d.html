@@ -4,68 +4,78 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bake House by Pugunner - Premium Bakery</title>
+    <title>Espresso House & Roastery - Premium Coffee</title>
 
-    <!-- 🧠 ส่วนสมองของเว็บ: เอาไว้ดึงพวกฟอนต์สวยๆ กับไอคอนมาใช้งาน -->
+    <!-- FontAwesome & Google Fonts (Playfair Display for Header, Prompt & Poppins for body) -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <!-- ใช้ฟอนต์ Lobster สำหรับหัวข้อแนวคาเฟ่ และ Prompt/Poppins สำหรับเนื้อหาให้อ่านง่าย -->
-    <link href="https://fonts.googleapis.com/css2?family=Lobster&family=Poppins:wght@300;400;500;600;700&family=Prompt:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,400&family=Poppins:wght@300;400;500;600;700&family=Prompt:wght@300;400;500;600&display=swap" rel="stylesheet">
 
     <style>
-        /* 🎨 แก๊งตัวแปรสี: ตั้งไว้ตรงนี้ เวลาอยากเปลี่ยนสีธีมเว็บจะได้แก้แค่ตรงนี้ที่เดียวจบ! */
+        /* 🎨 แก๊งตัวแปรสีสไตล์ร้านกาแฟธรรมชาติ Organic & Earth Tone */
         :root {
-            --primary-orange: #c44b25; /* สีส้มอิฐ ตัวเด่นของร้าน */
-            --primary-hover: #a13d1e; /* สีส้มเข้ม เอาไว้ใช้ตอนเอาเมาส์ชี้ */
-            --bg-dark: #161616;
-            --bg-light: #ffffff;
-            --text-light: #f5f5f5;
-            --text-dark: #222222;
-            --transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1); /* แอนิเมชันนุ่มๆ ฟินๆ */
+            --primary-coffee: #2e5233;    /* สีเขียวขจีธรรมชาติ / ใบชาเขียวออร์แกนิก */
+            --primary-hover: #1e3822;     /* สีเขียวป่าเข้มตอนโฮเวอร์ */
+            --accent-wood: #8c6347;       /* สีน้ำตาลไม้อบอุ่น / เมล็ดกาแฟคั่ว */
+            --accent-hover: #6e4c34;      /* สีน้ำตาลคั่วเข้ม */
+            --espresso-dark: #1a221b;    /* สีเขียวเข้มเอสเพรสโซ */
+            --roast-medium: #3e3228;     /* สีน้ำตาลเมล็ดกาแฟธรรมชาติ */
+            --cream-light: #f5f3ef;      /* สีครีมกระดาษลินินธรรมชาติ */
+            --cream-card: #e8e4db;       /* สีครีมการ์ดธรรมชาติ */
+            --text-dark: #1f2620;        /* สีตัวหนังสือเข้มอมเขียว */
+            --text-muted: #627063;       /* สีตัวหนังสือเทาใบไม้ */
+            --white: #ffffff;
+            --shadow-sm: 0 4px 12px rgba(26, 34, 27, 0.08);
+            --shadow-lg: 0 12px 30px rgba(26, 34, 27, 0.18);
+            --transition: all 0.35s cubic-bezier(0.25, 0.8, 0.25, 1);
         }
 
-        /* 🧹 เคลียร์ค่าขอบต่างๆ ที่เบราว์เซอร์ชอบแอบแถมมาให้ */
+        /* 🧹 เคลียร์ค่าขอบพื้นฐาน */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
-        /* ทำให้เวลาคลิกเมนูแล้วมันค่อยๆ เลื่อนสมูทๆ ลงมา ไม่วาร์ปปุบปับ */
         html {
             scroll-behavior: smooth;
         }
 
-        /* เซ็ตฟอนต์หลักและสีพื้นหลังของทั้งหน้าเว็บ */
         body {
             font-family: "Poppins", "Prompt", sans-serif;
-            background: var(--bg-light);
+            background: var(--cream-light);
             line-height: 1.6;
-            overflow-x: hidden; /* กันเว็บเลื่อนไปซ้ายขวาแล้วพัง */
+            overflow-x: hidden;
             color: var(--text-dark);
         }
 
-        /* ล้างเส้นใต้ลิงก์ และจัดการรูปภาพไม่ให้ล้น */
         a { text-decoration: none; color: inherit; }
         img { display: block; max-width: 100%; height: auto; }
         button { font-family: inherit; cursor: pointer; border: none; background: none; }
 
         /* ------------------ แถบเมนูด้านบนสุด (Header) ------------------ */
         .header-wrapper {
-            position: absolute; /* ให้เมนูลอยทับรูปปกไปเลย */
+            position: fixed;
             top: 0;
             left: 0;
             width: 100%;
-            z-index: 50; /* ดันให้อยู่ชั้นบนสุด จะได้ไม่โดนรูปอื่นบัง */
-            background: linear-gradient(180deg, rgba(0, 0, 0, 0.85) 0%, rgba(0, 0, 0, 0) 100%); /* ไล่สีดำให้ตัวหนังสือเมนูเด่นขึ้น */
-            padding: 15px 0;
+            z-index: 100;
+            background: linear-gradient(180deg, rgba(15, 10, 7, 0.95) 0%, rgba(15, 10, 7, 0.4) 80%, rgba(15, 10, 7, 0) 100%);
+            padding: 18px 0;
+            transition: var(--transition);
+        }
+
+        .header-wrapper.scrolled {
+            background: rgba(28, 18, 12, 0.98);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+            padding: 12px 0;
         }
 
         .header {
             width: 90%;
             max-width: 1200px;
-            margin: 0 auto; /* จับให้อยู่กึ่งกลางเสมอ */
+            margin: 0 auto;
             display: flex;
             align-items: center;
             justify-content: space-between;
@@ -75,66 +85,98 @@
             display: flex;
             align-items: center;
             gap: 12px;
-            font-family: "Lobster", cursive;
-            font-size: clamp(24px, 4vw, 32px); /* ขนาดตัวหนังสือยืดหยุ่นตามจอ */
-            color: #fff;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            font-family: "Playfair Display", Georgia, serif;
+            font-size: clamp(22px, 3.5vw, 28px);
+            font-weight: 700;
+            color: var(--white);
+            letter-spacing: 0.5px;
         }
 
-        .logo img {
-            width: 50px;
-            height: 50px;
-            object-fit: contain;
+        .logo i {
+            color: var(--primary-coffee);
+            font-size: 28px;
         }
 
-        /* แก๊งลิงก์เมนูต่างๆ */
         .nav-menu {
             display: flex;
             align-items: center;
-            gap: clamp(15px, 3vw, 35px);
+            gap: clamp(15px, 2.5vw, 32px);
         }
 
         .nav-menu a {
-            color: #f4f4f4;
-            font-size: 16px;
+            color: #e2d9d0;
+            font-size: 15px;
             font-weight: 500;
             position: relative;
             transition: var(--transition);
         }
 
-        /* ลูกเล่นขีดเส้นใต้เมนูตอนเอาเมาส์ชี้ ✨ */
         .nav-menu a::after {
             content: '';
             position: absolute;
             bottom: -6px;
             left: 0;
-            width: 0%; /* ซ่อนขีดไว้ก่อน */
+            width: 0%;
             height: 2px;
-            background: var(--primary-orange);
+            background: var(--primary-coffee);
             transition: var(--transition);
         }
 
         .nav-menu a:hover, .nav-menu a.active {
-            color: var(--primary-orange);
-        }
-        .nav-menu a:hover::after, .nav-menu a.active::after {
-            width: 100%; /* โชว์ขีดเส้นใต้เต็มๆ */
+            color: var(--primary-coffee);
         }
 
-        /* ------------------ หน้าปกเว็บตู้มๆ (Hero Section) ------------------ */
-        .hero {
+        .nav-menu a:hover::after, .nav-menu a.active::after {
+            width: 100%;
+        }
+
+        /* ปุ่มตะกร้าสินค้า */
+        .cart-icon-btn {
             position: relative;
-            min-height: 100vh; /* ความสูงเต็มจอพอดี */
+            color: var(--white);
+            font-size: 20px;
+            padding: 8px 14px;
+            background: rgba(200, 125, 85, 0.2);
+            border: 1px solid rgba(200, 125, 85, 0.4);
+            border-radius: 50px;
+            transition: var(--transition);
             display: flex;
             align-items: center;
-            justify-content: flex-end; /* ดันข้อความไปทางขวา */
-            background-color: #111;
-            /* ใส่รูปพื้นหลัง พร้อมไล่สีมืดๆ ดรอปความสว่างรูป ข้อความจะได้ชัด */
-            background-image: linear-gradient(90deg, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0.2) 100%), url("images/112.png");
+            gap: 8px;
+        }
+
+        .cart-icon-btn:hover {
+            background: var(--primary-coffee);
+            color: var(--white);
+        }
+
+        .cart-badge {
+            background: var(--primary-coffee);
+            color: var(--white);
+            font-size: 11px;
+            font-weight: 700;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* ------------------ หน้าปกเว็บร้านกาแฟ (Hero Section) ------------------ */
+        .hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            background-color: var(--espresso-dark);
+            background-image: linear-gradient(90deg, rgba(20, 28, 21, 0.88) 0%, rgba(20, 28, 21, 0.45) 100%), 
+                              url('https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?auto=format&fit=crop&w=1920&q=80');
             background-size: cover;
             background-position: center;
-            color: white;
-            padding: 100px 5% 50px;
+            color: var(--white);
+            padding: 120px 5% 60px;
         }
 
         .hero-container {
@@ -146,73 +188,294 @@
         }
 
         .hero-content {
-            max-width: 550px;
+            max-width: 600px;
             text-align: right;
         }
 
         .small-title {
-            color: var(--primary-orange);
-            font-size: clamp(18px, 2.5vw, 24px);
-            font-weight: 500;
-            letter-spacing: 2px;
-            margin-bottom: 10px;
-            font-family: "Lobster", cursive;
+            color: #8bb088;
+            font-size: clamp(16px, 2vw, 20px);
+            font-weight: 600;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 12px;
+            font-family: "Poppins", sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            gap: 8px;
         }
 
         .hero-content h1 {
-            font-family: "Lobster", cursive;
-            font-size: clamp(40px, 6vw, 72px);
-            line-height: 1.1;
-            font-weight: 400;
+            font-family: "Playfair Display", Georgia, serif;
+            font-size: clamp(38px, 5.5vw, 68px);
+            line-height: 1.15;
+            font-weight: 700;
+            margin-bottom: 20px;
+            text-shadow: 0 4px 20px rgba(0, 0, 0, 0.7);
+        }
+
+        .hero-desc {
+            font-size: clamp(14px, 1.8vw, 17px);
+            color: #d1c5b8;
             margin-bottom: 35px;
-            text-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
+            font-weight: 300;
         }
 
         .hero-buttons {
             display: flex;
             align-items: center;
             justify-content: flex-end;
+            gap: 15px;
         }
 
-        /* ปุ่มกดสั่งซื้อ */
         .btn-primary {
             display: inline-flex;
             justify-content: center;
             align-items: center;
-            min-width: 150px;
-            height: 50px;
-            padding: 0 30px;
-            color: white;
-            background: var(--primary-orange);
-            border-radius: 4px;
+            gap: 10px;
+            min-width: 170px;
+            height: 52px;
+            padding: 0 32px;
+            color: var(--white);
+            background: var(--primary-coffee);
+            border-radius: 30px;
             font-weight: 600;
-            font-size: 16px;
+            font-size: 15px;
             transition: var(--transition);
+            box-shadow: 0 6px 20px rgba(200, 125, 85, 0.4);
         }
 
         .btn-primary:hover {
             background: var(--primary-hover);
-            transform: translateY(-3px); /* เด้งดึ๋งขึ้นนิดนึง */
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(200, 125, 85, 0.5);
         }
 
-        /* ------------------ หัวข้อของแต่ละโซน (ใช้ซ้ำได้เลย) ------------------ */
-        .section-heading {
+        .btn-secondary {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            min-width: 150px;
+            height: 52px;
+            padding: 0 28px;
+            color: var(--white);
+            border: 2px solid rgba(255, 255, 255, 0.4);
+            border-radius: 30px;
+            font-weight: 500;
+            font-size: 15px;
+            transition: var(--transition);
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--primary-coffee);
+            color: var(--primary-coffee);
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        /* ------------------ หัวข้อหลักของแต่ละเซกชัน ------------------ */
+        .section-heading-wrapper {
             text-align: center;
-            font-family: "Lobster", cursive;
-            font-size: clamp(36px, 5vw, 48px);
-            font-weight: 400;
             margin-bottom: 50px;
-            color: var(--text-dark);
         }
 
-        /* ------------------ โซนสินค้ายอดฮิต (Top Products) ------------------ */
+        .section-sub {
+            color: var(--primary-coffee);
+            font-size: 14px;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .section-heading {
+            font-family: "Playfair Display", Georgia, serif;
+            font-size: clamp(32px, 4vw, 44px);
+            font-weight: 700;
+            color: var(--espresso-dark);
+            margin-top: 5px;
+        }
+
+        /* ------------------ โซนเมนูกาแฟยอดฮิต (Top Brews) ------------------ */
         .products-section {
-            padding: 80px 5%;
-            background: var(--bg-light);
+            padding: 90px 5%;
+            background: var(--cream-light);
         }
 
-        /* จัดเรียงรูปเป็น 3 คอลัมน์ (เหมือนตาราง 3 ช่อง) */
         .product-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .product-card {
+            border-radius: 16px;
+            overflow: hidden;
+            background: var(--white);
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .product-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .product-img-box {
+            position: relative;
+            width: 100%;
+            height: 260px;
+            overflow: hidden;
+        }
+
+        .product-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .product-card:hover img {
+            transform: scale(1.08);
+        }
+
+        .card-tag {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background: rgba(28, 18, 12, 0.8);
+            backdrop-filter: blur(5px);
+            color: var(--primary-coffee);
+            font-size: 12px;
+            font-weight: 600;
+            padding: 4px 12px;
+            border-radius: 20px;
+        }
+
+        .product-info {
+            padding: 22px;
+        }
+
+        .product-title {
+            font-size: 19px;
+            font-weight: 600;
+            color: var(--espresso-dark);
+            margin-bottom: 6px;
+        }
+
+        .product-desc {
+            font-size: 13px;
+            color: var(--text-muted);
+            margin-bottom: 18px;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .product-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .price-tag {
+            font-size: 15px;
+            font-weight: 700;
+            color: var(--white);
+            background: var(--primary-coffee);
+            padding: 5px 16px;
+            border-radius: 20px;
+            display: inline-block;
+            box-shadow: 0 2px 8px rgba(46, 82, 51, 0.25);
+        }
+
+        /* ------------------ แบนเนอร์คั่นหน้าเว็บ (Parallax Banner) ------------------ */
+        .promotion-banner {
+            width: 100%;
+            min-height: 380px;
+            background-image: linear-gradient(rgba(20, 28, 21, 0.75), rgba(20, 28, 21, 0.75)), 
+                              url('https://images.unsplash.com/photo-1442512595331-e89e73853f31?auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: var(--white);
+            padding: 40px 20px;
+        }
+
+        .banner-content {
+            max-width: 800px;
+        }
+
+        .banner-content h2 {
+            font-family: "Playfair Display", serif;
+            font-size: clamp(28px, 4vw, 42px);
+            margin-bottom: 15px;
+            color: #f7e6d8;
+        }
+
+        .banner-content p {
+            font-size: clamp(15px, 2vw, 18px);
+            color: #d1c5b8;
+            font-weight: 300;
+        }
+
+        .about-banner {
+            width: 100%;
+            min-height: 400px;
+            background-image: linear-gradient(rgba(20, 28, 21, 0.8), rgba(20, 28, 21, 0.8)), 
+                              url('https://images.unsplash.com/photo-1511537190424-bbbab87ac5eb?auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: var(--white);
+            padding: 50px 20px;
+        }
+
+        /* ------------------ โซนเมนูแยกตามหมวดหมู่ (Explore Menu) ------------------ */
+        .explore-section {
+            padding: 90px 5%;
+            background: var(--white);
+        }
+
+        .category-menu {
+            max-width: 850px;
+            margin: 0 auto 40px;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 12px;
+            border-bottom: 1px solid #eae2d9;
+            padding-bottom: 20px;
+        }
+
+        .category {
+            background: var(--cream-light);
+            color: var(--text-muted);
+            font-size: 15px;
+            font-weight: 500;
+            border-radius: 25px;
+            padding: 8px 22px;
+            transition: var(--transition);
+        }
+
+        .category.active, .category:hover {
+            background: var(--primary-coffee);
+            color: var(--white);
+            box-shadow: 0 4px 12px rgba(200, 125, 85, 0.3);
+        }
+
+        .explore-grid {
             max-width: 1200px;
             margin: 0 auto;
             display: grid;
@@ -220,117 +483,54 @@
             gap: 25px;
         }
 
-        .product-card {
-            border-radius: 8px;
-            overflow: hidden; /* กันรูปโผล่ทะลุกรอบตอนขยาย */
-            background: transparent;
-            transition: var(--transition);
-        }
-
-        .product-card:hover {
-            transform: translateY(-8px); /* เอาเมาส์ชี้แล้วการ์ดลอยขึ้น */
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15); /* ใส่เงาให้ดูมีมิติ */
-        }
-
-        .product-card img {
-            width: 100%;
-            height: auto;
-            object-fit: cover;
-        }
-
-        /* ------------------ แบนเนอร์คั่นหน้าเว็บ (ทำให้รูปอยู่นิ่งๆ เท่ๆ) ------------------ */
-        .promotion-banner, .about-banner {
-            width: 100%;
-            min-height: 400px;
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed; /* โค้ดลับ! ทำให้รูปพื้นหลังไม่เลื่อนตามตอนเราไถจอ (Parallax) */
-        }
-        
-        .promotion-banner {
-            background-image: url("images/Group497.png"); 
-            background-color: #e3d2c1; /* สีสำรอง เผื่อรูปโหลดไม่ขึ้น */
-        }
-
-        .about-banner {
-            background-image: url("images/Group498.png");
-            background-color: #222222;
-        }
-
-        /* ------------------ โซนเมนูหมวดหมู่ (Explore More) ------------------ */
-        .explore-section {
-            padding: 80px 5%;
-            background: var(--bg-light);
-        }
-
-        /* ปุ่มเลือกหมวดหมู่ขนม */
-        .category-menu {
-            max-width: 800px;
-            margin: 0 auto 40px;
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 20px;
-            border-bottom: 2px solid #eaeaea;
-            padding-bottom: 15px;
-        }
-
-        .category {
-            background: transparent;
-            color: #888;
-            font-size: 16px;
-            font-weight: 500;
-            position: relative;
-            transition: var(--transition);
-            padding: 5px 10px;
-        }
-
-        .category.active, .category:hover {
-            color: var(--primary-orange);
-            font-weight: 600;
-        }
-
-        /* ขีดส้มๆ ใต้เมนูที่กำลังเลือกอยู่ */
-        .category.active::after {
-            content: '';
-            position: absolute;
-            bottom: -17px;
-            left: 0;
-            width: 100%;
-            height: 3px;
-            background: var(--primary-orange);
-        }
-
-        /* เรียงรูปขนม 3 คอลัมน์ */
-        .explore-grid {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 20px;
-        }
-
         .explore-card {
+            border-radius: 12px;
             overflow: hidden;
-            border-radius: 4px;
+            background: var(--cream-light);
+            position: relative;
+            box-shadow: var(--shadow-sm);
         }
 
-        /* ตัดรูปให้เป็นสี่เหลี่ยมจัตุรัสเป๊ะๆ (1:1) */
         .explore-card img {
             width: 100%;
-            aspect-ratio: 1 / 1; 
+            aspect-ratio: 1 / 1;
             object-fit: cover;
             transition: transform 0.5s ease;
         }
 
         .explore-card:hover img {
-            transform: scale(1.05); /* เอาเมาส์ชี้แล้วรูปซูมเข้าแบบสมูทๆ */
+            transform: scale(1.06);
         }
 
-        /* ------------------ โซนขนมแนะนำพร้อมราคา (Featured Treats) ------------------ */
+        .explore-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(0deg, rgba(28, 18, 12, 0.9) 0%, rgba(28, 18, 12, 0) 100%);
+            padding: 20px;
+            color: var(--white);
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+        }
+
+        .explore-name {
+            font-size: 17px;
+            font-weight: 600;
+        }
+
+        .explore-price {
+            color: var(--white);
+            font-weight: 700;
+            font-size: 18px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+        }
+
+        /* ------------------ โซนขนมและเมล็ดกาแฟแนะนำ (Featured Drinks & Beans) ------------------ */
         .featured-section {
-            padding: 80px 5%;
-            background: var(--bg-light);
+            padding: 90px 5%;
+            background: var(--cream-light);
         }
 
         .featured-grid {
@@ -342,45 +542,53 @@
         }
 
         .featured-item {
-            background: transparent;
+            background: var(--white);
+            border-radius: 16px;
+            padding: 16px;
+            box-shadow: var(--shadow-sm);
             transition: var(--transition);
         }
 
         .featured-item:hover {
             transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
         }
 
         .featured-item img {
             width: 100%;
-            aspect-ratio: 1 / 1;
+            aspect-ratio: 4 / 3;
             object-fit: cover;
-            border-radius: 4px;
+            border-radius: 12px;
         }
 
         .featured-details {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 15px 5px 0;
+            padding: 15px 5px 5px;
         }
 
         .featured-details h3 {
             font-size: 18px;
             font-weight: 600;
-            color: var(--text-dark);
+            color: var(--espresso-dark);
         }
 
         .featured-details span {
-            font-size: 18px;
+            font-size: 15px;
             font-weight: 700;
-            color: var(--primary-orange);
+            color: var(--white);
+            background: var(--primary-coffee);
+            padding: 5px 16px;
+            border-radius: 20px;
+            box-shadow: 0 2px 8px rgba(46, 82, 51, 0.25);
         }
 
-        /* ------------------ ส่วนท้ายเว็บ (Footer) ไว้ใส่คอนแทค ------------------ */
+        /* ------------------ ส่วนท้ายเว็บ (Footer) ------------------ */
         .footer {
-            background: #161616;
-            color: #aaa;
-            padding: 60px 5% 30px;
+            background: var(--espresso-dark);
+            color: #a89f91;
+            padding: 70px 5% 30px;
         }
 
         .footer-top {
@@ -394,71 +602,73 @@
         }
 
         .footer-logo {
-            font-family: "Lobster", cursive;
-            font-size: 32px;
-            color: var(--primary-orange);
+            font-family: "Playfair Display", serif;
+            font-size: 30px;
+            font-weight: 700;
+            color: var(--primary-coffee);
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
 
-        /* ไอคอนโซเชียลกลมๆ */
         .social-icons {
             display: flex;
-            gap: 15px;
+            gap: 12px;
         }
 
         .social-icons a {
-            color: #111;
-            background: #fff;
-            font-size: 18px;
+            color: var(--espresso-dark);
+            background: var(--cream-light);
+            font-size: 16px;
             display: flex;
             align-items: center;
             justify-content: center;
-            width: 40px;
-            height: 40px;
+            width: 38px;
+            height: 38px;
             border-radius: 50%;
             transition: var(--transition);
         }
 
         .social-icons a:hover {
-            background: var(--primary-orange);
-            color: #fff;
+            background: var(--primary-coffee);
+            color: var(--white);
             transform: translateY(-3px);
         }
 
-        /* เส้นคั่นบางๆ แบ่งโซน */
         .footer-line {
             max-width: 1200px;
             height: 1px;
             background: rgba(255, 255, 255, 0.1);
-            margin: 30px auto;
+            margin: 35px auto;
         }
 
         .footer-content {
             max-width: 1200px;
             margin: 0 auto;
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
             gap: 40px;
         }
 
         .footer-column h2 {
-            color: #fff;
-            font-size: 20px;
+            color: var(--white);
+            font-size: 18px;
             margin-bottom: 20px;
-            font-family: "Lobster", cursive;
-            letter-spacing: 1px;
+            font-family: "Playfair Display", serif;
+            letter-spacing: 0.5px;
         }
 
         .footer-column p, .footer-column > a {
             display: block;
-            color: #aaa;
+            color: #a89f91;
             font-size: 14px;
             margin-bottom: 12px;
             transition: var(--transition);
         }
 
         .footer-column > a:hover {
-            color: var(--primary-orange);
-            transform: translateX(5px);
+            color: var(--primary-coffee);
+            transform: translateX(4px);
         }
 
         .news-item {
@@ -469,302 +679,464 @@
         }
 
         .news-item img {
-            width: 70px;
+            width: 65px;
             height: 60px;
-            border-radius: 4px;
+            border-radius: 6px;
             object-fit: cover;
         }
 
         .news-item span {
-            color: var(--primary-orange);
+            color: var(--primary-coffee);
             font-size: 12px;
             display: block;
             font-weight: 500;
-            margin-bottom: 3px;
         }
 
         .news-item p {
             margin: 0;
             font-size: 13px;
-            line-height: 1.4;
-            color: #ddd;
+            line-height: 1.3;
+            color: #d1c5b8;
         }
 
         .copyright {
             text-align: center;
-            color: #666;
+            color: #70665c;
             font-size: 13px;
             margin-top: 50px;
             border-top: 1px solid rgba(255, 255, 255, 0.05);
             padding-top: 20px;
         }
 
-        /* ==================================================================== */
-        /* 📱 โซนเสกเวทมนตร์ (Responsive): ปรับเลย์เอาต์ให้สวยเป๊ะทั้งแท็บเล็ตและมือถือ */
-        /* ==================================================================== */
-        
-        /* หน้าจอขนาดกลาง (แท็บเล็ต) ไอแพดต่างๆ */
+        /* Toast notification */
+        .toast-msg {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%) translateY(100px);
+            background: var(--espresso-dark);
+            color: var(--white);
+            padding: 12px 28px;
+            border-radius: 30px;
+            box-shadow: var(--shadow-lg);
+            border: 1px solid var(--primary-coffee);
+            z-index: 300;
+            transition: transform 0.4s ease, opacity 0.4s ease;
+            opacity: 0;
+            pointer-events: none;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .toast-msg.show {
+            transform: translateX(-50%) translateY(0);
+            opacity: 1;
+        }
+
+        /* 📱 Responsive Adjustments */
         @media screen and (max-width: 992px) {
-            /* เปลี่ยนจาก 3 คอลัมน์ หดเหลือ 2 คอลัมน์ จะได้ไม่เบียดกัน */
             .product-grid, .explore-grid, .featured-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
-            /* ลดความสูงแบนเนอร์คั่นหน้าลงหน่อย */
             .promotion-banner, .about-banner {
-                min-height: 300px;
-                background-attachment: scroll; /* ปิด Parallax ในแท็บเล็ตเพื่อลดการกระตุก */
+                background-attachment: scroll;
             }
         }
 
-        /* หน้าจอขนาดเล็ก (มือถือ) */
         @media screen and (max-width: 768px) {
-            /* จับเมนูมาเรียงใหม่ให้อยู่ตรงกลางจอ */
             .header {
                 flex-direction: column;
-                padding: 10px 0;
-                background: rgba(0, 0, 0, 0.9); /* ทำพื้นหลังทึบๆ เมนูจะได้อ่านง่ายบนมือถือ */
+                gap: 12px;
             }
-            
             .nav-menu {
                 flex-wrap: wrap;
                 justify-content: center;
                 gap: 15px;
-                margin-top: 10px;
             }
-
-            /* ลดความสูงรูปปกหน้าแรก ดึงข้อความมาไว้ตรงกลาง */
             .hero {
                 min-height: 80vh;
-                padding-top: 150px;
+                padding-top: 160px;
                 justify-content: center;
             }
-
             .hero-content {
                 text-align: center;
             }
-
             .hero-buttons {
                 justify-content: center;
             }
-
-            /* เปลี่ยนกริดรูปภาพทั้งหมดให้เหลือคอลัมน์เดียว (เรียงแถวตอนลึก) */
             .product-grid, .explore-grid, .featured-grid {
                 grid-template-columns: 1fr;
-                max-width: 400px;
+                max-width: 420px;
                 margin: 0 auto;
             }
-
-            .promotion-banner, .about-banner {
-                min-height: 200px;
-            }
-
-            /* ทำให้เมนูหมวดหมู่ เลื่อนซ้ายขวา (Scroll) บนมือถือได้เก๋ๆ */
-            .category-menu {
-                justify-content: flex-start;
-                overflow-x: auto;
-                flex-wrap: nowrap;
-                padding-bottom: 10px;
-            }
-
-            .category {
-                white-space: nowrap; /* ห้ามตัวหนังสือตัดขึ้นบรรทัดใหม่ */
-            }
-
-            /* ส่วน Contact ท้ายเว็บ จัดให้อยู่ตรงกลางให้หมด */
-            .footer-top {
-                flex-direction: column;
+            .footer-top, .footer-content {
                 text-align: center;
-            }
-
-            .footer-content {
-                text-align: center;
-            }
-
-            .news-item {
-                flex-direction: column;
-                text-align: center;
-            }
-
-            .news-item img {
-                width: 100%;
-                height: 150px;
             }
         }
     </style>
 </head>
 
 <body>
-
-    <!-- 🍞 เริ่มต้นส่วนเนื้อหาเว็บ 🍞 -->
-
-    <!-- ส่วนที่ 1: เมนูด้านบน (ลอยติดจอ) -->
-    <header class="header-wrapper">
+    <!-- ☕ ส่วนที่ 1: แถบเมนูด้านบน (Sticky Header) -->
+    <header class="header-wrapper" id="navbar">
         <div class="header">
-            <!-- โลโก้ร้าน -->
+            <!-- โลโก้ร้านกาแฟ -->
             <a href="#home" class="logo">
-                <img src="images/111.png" alt="Bake House">
-                <span>Bake House</span>
+                <i class="fa-solid fa-leaf" style="color: #6da373;"></i>
+                <span>Espresso House & Organic</span>
             </a>
-            <!-- ปุ่มเมนูไปโซนต่างๆ -->
+            
+            <!-- ปุ่มเมนูหลัก -->
             <nav class="nav-menu">
-                <a href="#home" class="active">Home</a>
-                <a href="#products">Products</a>
-                <a href="#explore">Explore</a>
-                <a href="#featured">Featured</a>
-                <a href="#contact">Contact</a>
+                <a href="#home" class="active">หน้าแรก</a>
+                <a href="#products">เมนูแนะนำ</a>
+                <a href="#explore">หมวดหมู่</a>
+                <a href="#featured">เมล็ดกาแฟ</a>
+                <a href="#contact">ติดต่อเรา</a>
             </nav>
         </div>
     </header>
 
-    <!-- ส่วนที่ 2: ปกเว็บ (อลังการงานสร้าง) -->
+    <!-- ☕ ส่วนที่ 2: ปกเว็บสไตล์คาเฟ่ (Hero Section) -->
     <section class="hero" id="home">
         <div class="hero-container">
             <div class="hero-content">
-                <p class="small-title">Delicious Cafe</p>
-                <h1>Sweet Treats,<br>Perfect Eats</h1>
+                <p class="small-title"><i class="fa-solid fa-tree"></i> Organic & Shade-Grown Roastery</p>
+                <h1>Naturally Brewed,<br>Sustainably Crafted</h1>
+                <p class="hero-desc">สัมผัสรสชาติกาแฟออร์แกนิกใต้ร่มเงาป่าธรรมชาติ คัดสรรเมล็ดพันธุ์ชั้นดีจากแหล่งปลูกยั่งยืน ปลูกด้วยความใส่ใจและพิถีพิถันทุกขั้นตอน</p>
                 <div class="hero-buttons">
-                    <a href="#products" class="btn-primary">Shop Now</a>
+                    <a href="#products" class="btn-primary">
+                        <span>ดูเมนูทั้งหมด</span>
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </a>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- ส่วนที่ 3: สินค้าตัวท็อป โชว์รูปเรียง 3 แถว -->
+    <!-- ☕ ส่วนที่ 3: เมนูกาแฟยอดฮิต (Top Brews Grid) -->
     <section class="products-section" id="products">
-        <h2 class="section-heading">Top Products</h2>
+        <div class="section-heading-wrapper">
+            <span class="section-sub">Signature Menu</span>
+            <h2 class="section-heading">Top Brews & Drinks</h2>
+        </div>
+
         <div class="product-grid">
-            <!-- เปลี่ยนรูปภาพตรงนี้ได้เลย (ระวัง path รูปด้วยนะพู่กัน) -->
-            <div class="product-card"><img src="images/Group489.jpg" alt="Product"></div>
-            <div class="product-card"><img src="images/Group490.png" alt="Product"></div>
-            <div class="product-card"><img src="images/Group491.png" alt="Product"></div>
-            <div class="product-card"><img src="images/Group492.png" alt="Product"></div>
-            <div class="product-card"><img src="images/Group493.png" alt="Product"></div>
-            <div class="product-card"><img src="images/Group494.png" alt="Product"></div>
+            <!-- สินค้าที่ 1 -->
+            <div class="product-card">
+                <div class="product-img-box">
+                    <span class="card-tag">BESTSELLER</span>
+                    <img src="https://images.unsplash.com/photo-1572442388796-11668a67e53d?auto=format&fit=crop&w=600&q=80" alt="Iced Caramel Macchiato" onerror="this.onerror=null; this.src='https://placehold.co/600x600/3d281d/ffffff?text=Caramel+Macchiato'">
+                </div>
+                <div class="product-info">
+                    <h3 class="product-title">Caramel Macchiato</h3>
+                    <p class="product-desc">เอสเพรสโซเข้มข้นผสมนมสดนุ่มลิ้น ราดด้วยซอสคาราเมลหอมหวานโฮมเมด</p>
+                    <div class="product-footer">
+                        <span class="price-tag">฿95</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- สินค้าที่ 2 -->
+            <div class="product-card">
+                <div class="product-img-box">
+                    <span class="card-tag">RECOMMENDED</span>
+                    <img src="https://images.unsplash.com/photo-1517701604599-bb29b565090c?auto=format&fit=crop&w=600&q=80" alt="Nitro Cold Brew" onerror="this.onerror=null; this.src='https://placehold.co/600x600/3d281d/ffffff?text=Nitro+Cold+Brew'">
+                </div>
+                <div class="product-info">
+                    <h3 class="product-title">Signature Cold Brew</h3>
+                    <p class="product-desc">กาแฟสกัดเย็นนาน 16 ชั่วโมง ให้รสสัมผัสช็อกโกแลตและถั่ว ละมุนดื่มง่าย</p>
+                    <div class="product-footer">
+                        <span class="price-tag">฿110</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- สินค้าที่ 3 -->
+            <div class="product-card">
+                <div class="product-img-box">
+                    <span class="card-tag">POPULAR</span>
+                    <img src="https://images.unsplash.com/photo-1534778101976-62847782c213?auto=format&fit=crop&w=600&q=80" alt="Hot Flat White" onerror="this.onerror=null; this.src='https://placehold.co/600x600/3d281d/ffffff?text=Flat+White'">
+                </div>
+                <div class="product-info">
+                    <h3 class="product-title">Artisan Flat White</h3>
+                    <p class="product-desc">ดับเบิ้ลช็อตเอสเพรสโซเสิร์ฟพร้อมไมโครโฟมนมนุ่มละมุน ลายลาเต้อาร์ตสวยงาม</p>
+                    <div class="product-footer">
+                        <span class="price-tag">฿85</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- สินค้าที่ 4 -->
+            <div class="product-card">
+                <div class="product-img-box">
+                    <img src="https://images.unsplash.com/photo-1541167760496-1628856ab772?auto=format&fit=crop&w=600&q=80" alt="Matcha Espresso" onerror="this.onerror=null; this.src='https://placehold.co/600x600/3d281d/ffffff?text=Dirty+Matcha'">
+                </div>
+                <div class="product-info">
+                    <h3 class="product-title">Dirty Matcha Espresso</h3>
+                    <p class="product-desc">ชาเขียวมัทฉะเกรดพิธีการเข้มข้น ท็อปด้วยกาแฟเอสเพรสโซช็อตหอมกรุ่น</p>
+                    <div class="product-footer">
+                        <span class="price-tag">฿120</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- สินค้าที่ 5 -->
+            <div class="product-card">
+                <div class="product-img-box">
+                    <img src="https://images.unsplash.com/photo-1551024709-8f23befc6f87?auto=format&fit=crop&w=600&q=80" alt="Croissant & Coffee" onerror="this.onerror=null; this.src='https://placehold.co/600x600/3d281d/ffffff?text=Butter+Croissant'">
+                </div>
+                <div class="product-info">
+                    <h3 class="product-title">French Butter Croissant</h3>
+                    <p class="product-desc">ครัวซองต์เนยแท้จากฝรั่งเศส กรอบนอกนุ่มใน หอมเนยฉ่ำว้าว</p>
+                    <div class="product-footer">
+                        <span class="price-tag">฿75</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- สินค้าที่ 6 -->
+            <div class="product-card">
+                <div class="product-img-box">
+                    <img src="https://images.unsplash.com/photo-1587314168485-3236d6710814?auto=format&fit=crop&w=600&q=80" alt="Chocolate Tart" onerror="this.onerror=null; this.src='https://placehold.co/600x600/3d281d/ffffff?text=Dark+Chocolate+Tart'">
+                </div>
+                <div class="product-info">
+                    <h3 class="product-title">Dark Chocolate Tart</h3>
+                    <p class="product-desc">ทาร์ตช็อกโกแลตเข้มข้น 70% รสชาติกลมกล่อมเข้ากันดีกับกาแฟร้อน</p>
+                    <div class="product-footer">
+                        <span class="price-tag">฿90</span>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
-    <!-- แบนเนอร์ขั้นจังหวะที่ 1 -->
-    <section class="promotion-banner" aria-label="Promotion Banner"></section>
+    <!-- ☕ แบนเนอร์ขั้นจังหวะที่ 1 -->
+    <section class="promotion-banner" aria-label="Coffee Quote Banner">
+        <div class="banner-content">
+            <h2>"Good Coffee is a Pleasure, Good Friends are a Blessing."</h2>
+            <p>สัมผัสประสบการณ์กาแฟสดที่ตั้งใจคั่วทุกเมล็ด เพื่อส่งต่อความสุขในทุกๆ แก้วของคุณ</p>
+        </div>
+    </section>
 
-    <!-- ส่วนที่ 4: ค้นหาขนมตามหมวดหมู่ -->
+    <!-- ☕ ส่วนที่ 4: หมวดหมู่สินค้า (Explore Categories) -->
     <section class="explore-section" id="explore">
-        <h2 class="section-heading">Explore More</h2>
-        <!-- ปุ่มหมวดหมู่ (ใช้ JS ช่วยสลับสถานะด้านล่าง) -->
-        <div class="category-menu">
-            <button type="button" class="category active">Cake</button>
-            <button type="button" class="category">Muffins</button>
-            <button type="button" class="category">Croissant</button>
-            <button type="button" class="category">Bread</button>
-            <button type="button" class="category">Tart</button>
-            <button type="button" class="category">Favorite</button>
+        <div class="section-heading-wrapper">
+            <span class="section-sub">Explore Our Menu</span>
+            <h2 class="section-heading">Categories & Specialities</h2>
         </div>
-        <!-- รูปขนมในหมวดหมู่ -->
-        <div class="explore-grid">
-            <div class="explore-card"><img src="images/Rectangle20.png" alt="Muffin"></div>
-            <div class="explore-card"><img src="images/Rectangle21.png" alt="Berry Cake"></div>
-            <div class="explore-card"><img src="images/Rectangle22.png" alt="Fruit Cake"></div>
-            <div class="explore-card"><img src="images/Rectangle23.png" alt="Cake"></div>
-            <div class="explore-card"><img src="images/Rectangle24.png" alt="Chocolate Cake"></div>
-            <div class="explore-card"><img src="images/Rectangle25.png" alt="Cupcake"></div>
+
+        <!-- ปุ่มเลือกหมวดหมู่ -->
+        <div class="category-menu">
+            <button type="button" class="category active" onclick="filterCategory('all', this)">ทั้งหมด (All)</button>
+            <button type="button" class="category" onclick="filterCategory('espresso', this)">เอสเพรสโซ (Espresso)</button>
+            <button type="button" class="category" onclick="filterCategory('coldbrew', this)">สกัดเย็น (Cold Brew)</button>
+            <button type="button" class="category" onclick="filterCategory('noncoffee', this)">ชาและอื่นๆ (Non-Coffee)</button>
+            <button type="button" class="category" onclick="filterCategory('pastry', this)">เบเกอรี่ (Pastries)</button>
+        </div>
+
+        <!-- แสดงการ์ดรายการตามหมวดหมู่ -->
+        <div class="explore-grid" id="exploreGrid">
+            <div class="explore-card" data-cat="espresso">
+                <img src="https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&w=600&q=80" alt="Americano">
+                <div class="explore-overlay">
+                    <span class="explore-name">Iced Americano</span>
+                    <span class="explore-price">฿75</span>
+                </div>
+            </div>
+            <div class="explore-card" data-cat="espresso">
+                <img src="https://images.unsplash.com/photo-1570968915860-54d5c301fa9f?auto=format&fit=crop&w=600&q=80" alt="Latte Art">
+                <div class="explore-overlay">
+                    <span class="explore-name">Caffe Latte</span>
+                    <span class="explore-price">฿85</span>
+                </div>
+            </div>
+            <div class="explore-card" data-cat="coldbrew">
+                <img src="https://images.unsplash.com/photo-1461023058943-07fcbe16d735?auto=format&fit=crop&w=600&q=80" alt="Peach Cold Brew">
+                <div class="explore-overlay">
+                    <span class="explore-name">Yuzu Cold Brew</span>
+                    <span class="explore-price">฿125</span>
+                </div>
+            </div>
+            <div class="explore-card" data-cat="noncoffee">
+                <img src="https://images.unsplash.com/photo-1536256263959-770b48d82b0a?auto=format&fit=crop&w=600&q=80" alt="Iced Chocolate">
+                <div class="explore-overlay">
+                    <span class="explore-name">Belgian Hot Chocolate</span>
+                    <span class="explore-price">฿90</span>
+                </div>
+            </div>
+            <div class="explore-card" data-cat="pastry">
+                <img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=600&q=80" alt="Almond Croissant">
+                <div class="explore-overlay">
+                    <span class="explore-name">Almond Croissant</span>
+                    <span class="explore-price">฿85</span>
+                </div>
+            </div>
+            <div class="explore-card" data-cat="pastry">
+                <img src="https://images.unsplash.com/photo-1550617931-e17a7b70dce2?auto=format&fit=crop&w=600&q=80" alt="Blueberry Cheesecake">
+                <div class="explore-overlay">
+                    <span class="explore-name">New York Cheesecake</span>
+                    <span class="explore-price">฿115</span>
+                </div>
+            </div>
         </div>
     </section>
 
-    <!-- แบนเนอร์ขั้นจังหวะที่ 2 -->
-    <section class="about-banner" aria-label="About Our Bakery"></section>
+    <!-- ☕ แบนเนอร์ขั้นจังหวะที่ 2 -->
+    <section class="about-banner" aria-label="Our Roasting Process">
+        <div class="banner-content">
+            <h2>Freshly Roasted Beans Every Week</h2>
+            <p>เราควบคุมการคั่วเมล็ดกาแฟเองด้วยเทคโนโลยีระดับสากล เพื่อรสชาติที่สม่ำเสมอ กลิ่นหอมฟุ้ง และเทสติ้งโน้ตที่เป็นเอกลักษณ์</p>
+        </div>
+    </section>
 
-    <!-- ส่วนที่ 5: ขนมแนะนำ (อันนี้มีราคาบอกด้วย) -->
+    <!-- ☕ ส่วนที่ 5: เมล็ดกาแฟคั่วแนะนำ (Featured Coffee Beans) -->
     <section class="featured-section" id="featured">
-        <h2 class="section-heading">Featured Treats</h2>
+        <div class="section-heading-wrapper">
+            <span class="section-sub">Take Home Happiness</span>
+            <h2 class="section-heading">House Blend Coffee Beans</h2>
+        </div>
+
         <div class="featured-grid">
             <div class="featured-item">
-                <img src="images/Rectangle153.png" alt="Puff Pastry">
+                <img src="https://images.unsplash.com/photo-1559056199-641a0ac8b55e?auto=format&fit=crop&w=600&q=80" alt="Ethiopia Yirgacheffe">
                 <div class="featured-details">
-                    <h3>Doughnuts</h3>
-                    <span>8 Baht</span>
+                    <div>
+                        <h3>Ethiopia Yirgacheffe</h3>
+                        <p style="font-size:12px; color:#888;">Floral & Citrus Notes (250g)</p>
+                    </div>
+                    <span>฿380</span>
                 </div>
             </div>
             <div class="featured-item">
-                <img src="images/Rectangle154.png" alt="Doughnuts">
+                <img src="https://images.unsplash.com/photo-1611854779393-1b2da9d400fe?auto=format&fit=crop&w=600&q=80" alt="Brazil Santos Light Roast">
                 <div class="featured-details">
-                    <h3>Brownies</h3> 
-                    <span>8 Baht</span>
+                    <div>
+                        <h3>Brazil Cerrado</h3>
+                        <p style="font-size:12px; color:#888;">Nutty & Chocolate Tone (250g)</p>
+                    </div>
+                    <span>฿320</span>
                 </div>
             </div>
             <div class="featured-item">
-                <img src="images/Rectangle156.png" alt="Brownies">
+                <img src="https://images.unsplash.com/photo-1587734195503-904fca47e0e9?auto=format&fit=crop&w=600&q=80" alt="Chiang Rai Special Roast">
                 <div class="featured-details">
-                    <h3>Puff Pastry</h3>
-                    <span>8 Baht</span>
+                    <div>
+                        <h3>Chiang Rai House Blend</h3>
+                        <p style="font-size:12px; color:#888;">Smooth & Caramel Aftertaste (250g)</p>
+                    </div>
+                    <span>฿280</span>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- ส่วนที่ 6: ท้ายเว็บ (ติดต่อเรา) -->
+    <!-- ☕ ส่วนที่ 6: ท้ายเว็บ (Footer) -->
     <footer class="footer" id="contact">
         <div class="footer-top">
-            <div class="footer-logo">Bake House</div>
-            <!-- ปุ่มโซเชียล ไปเปลี่ยนลิงก์ใน href="#" ได้เลย -->
+            <div class="footer-logo">
+                <i class="fa-solid fa-mug-hot"></i>
+                <span>Espresso House</span>
+            </div>
             <div class="social-icons">
                 <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
-                <a href="#" aria-label="Pinterest"><i class="fa-brands fa-pinterest-p"></i></a>
-                <a href="#" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
                 <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                <a href="#" aria-label="Line"><i class="fa-brands fa-line"></i></a>
+                <a href="#" aria-label="TikTok"><i class="fa-brands fa-tiktok"></i></a>
             </div>
         </div>
 
-        <div class="footer-line"></div> <!-- เส้นคั่น -->
+        <div class="footer-line"></div>
 
         <div class="footer-content">
             <div class="footer-column">
-                <h2>About Us</h2>
-                <p><i class="fa-solid fa-phone" style="margin-right: 10px;"></i> (02) 807-4500</p>
-                <p><i class="fa-solid fa-envelope" style="margin-right: 10px;"></i> S6852C10003@gmail.com</p>
-                <p><i class="fa-solid fa-location-dot" style="margin-right: 10px;"></i> SAU, Phetkasem Road, Bangkok</p>
+                <h2>ข้อมูลร้านและการติดต่อ</h2>
+                <p><i class="fa-solid fa-phone" style="margin-right: 8px; color: var(--primary-coffee);"></i> 091xxxxxxx</p>
+                <p><i class="fa-solid fa-envelope" style="margin-right: 8px; color: var(--primary-coffee);"></i> S6952D10006@sau.ac.th</p>
+                <p><i class="fa-solid fa-location-dot" style="margin-right: 8px; color: var(--primary-coffee);"></i> SAU</p>
+                
             </div>
             <div class="footer-column">
-                <h2>Explore</h2>
-                <a href="#home">Home</a>
-                <a href="#products">Products</a>
-                <a href="#explore">Categories</a>
-                <a href="#featured">Featured Treats</a>
+                <h2>เมนูลัด</h2>
+                <a href="#home">หน้าแรก (Home)</a>
+                <a href="#products">เมนูกาแฟแนะนำ (Top Brews)</a>
+                <a href="#explore">หมวดหมู่เครื่องดื่ม (Categories)</a>
+                <a href="#featured">เมล็ดกาแฟคั่ว (Coffee Beans)</a>
             </div>
             <div class="footer-column">
-                <h2>Recent News</h2>
+                <h2>ข่าวสาร & โปรโมชัน</h2>
                 <div class="news-item">
-                    <img src="images/55.png" alt="Recent News">
+                    <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=200&q=80" alt="Special Event">
                     <div>
-                        <span>Sept 16, 2026</span>
-                        <p>Puff pastry bliss.</p>
+                        <span>20 ก.ย. 2026</span>
+                        <p>โปรโมชันต้อนรับฤดูกาล ซื้อกาแฟ 2 แก้ว แถมฟรีครัวซองต์เนยสด!</p>
                     </div>
                 </div>
                 <div class="news-item">
-                    <img src="images/66.png" alt="Recent News">
+                    <img src="https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&w=200&q=80" alt="Roasting Class">
                     <div>
-                        <span>Sept 10, 2026</span>
-                        <p>Freshly baked artisan loaves.</p>
+                        <span>15 ก.ย. 2026</span>
+                        <p>เวิร์กช็อปดิปกาแฟขั้นพื้นฐาน สำหรับคนรักกาแฟโฮมบรูว์</p>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- เครดิตคนทำเว็บ เท่ๆ -->
         <div class="copyright">
-            © 2026 Bake House Project. Crafted with 🖌️ by Pugunner.
+            © 2026 Espresso House & Organic . Create by Armmy kittichet ☕ & ❤ for Coffee Lovers
         </div>
     </footer>
 
-    <!-- 🪄 JavaScript จิ๋ว เอาไว้ทำระบบปุ่มหมวดหมู่ (คลิกแล้วปุ่มเปลี่ยนสี) -->
+    <!-- 🪄 JavaScript จัดการระบบตรวจสอบการเลื่อนหน้าจอและการกรองหมวดหมู่ -->
     <script>
-        // ค้นหาปุ่มเมนูทั้งหมด แล้วรอฟังคำสั่ง "คลิก"
-        document.querySelectorAll('.category').forEach(button => {
-            button.addEventListener('click', () => {
-                // ถ้ามีคนคลิกปุ๊บ ให้ล้างสีส้ม (active) ออกจากทุกปุ่มก่อน
-                document.querySelectorAll('.category').forEach(b => b.classList.remove('active'));
-                // แล้วค่อยระบายสีส้ม (active) คืนให้เฉพาะปุ่มที่เราเพิ่งกด
-                button.classList.add('active');
+        // สลับแถบสีเมนูบนเมื่อเลื่อนหน้าจอ down และอัปเดตสถานะ Active Link
+        window.addEventListener('scroll', () => {
+            const navbar = document.getElementById('navbar');
+            if (navbar) {
+                if (window.scrollY > 50) {
+                    navbar.classList.add('scrolled');
+                } else {
+                    navbar.classList.remove('scrolled');
+                }
+            }
+
+            // ไฮไลต์เมนูตามตำแหน่งหน้าจอแบบไดนามิก
+            const sections = document.querySelectorAll('section[id], footer[id]');
+            const navLinks = document.querySelectorAll('.nav-menu a');
+            let current = '';
+
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop - 120;
+                if (window.scrollY >= sectionTop) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.classList.add('active');
+                }
             });
         });
+
+        // ระบบกรองหมวดหมู่สินค้า
+        function filterCategory(cat, btn) {
+            if (!btn) return;
+            document.querySelectorAll('.category').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+
+            const cards = document.querySelectorAll('#exploreGrid .explore-card');
+            cards.forEach(card => {
+                if (cat === 'all' || card.getAttribute('data-cat') === cat) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
     </script>
 </body>
 
